@@ -1,0 +1,23 @@
+services:
+
+  dev:
+    build: ./docker/dev
+    command: sleep infinity
+    volumes:
+      - .:/demo-opentelemetry-php
+    working_dir: /demo-opentelemetry-php
+
+      
+  matemamusic-fpm:
+    build: ./docker/matemamusic-fpm
+    volumes:
+      - ./matemamusic:/var/www
+  
+  matemamusic-nginx:
+    build: ./docker/matemamusic-nginx
+    volumes:
+      - ./matemamusic:/var/www
+    depends_on:
+      - matemamusic-fpm
+    ports:
+      - 80:80
