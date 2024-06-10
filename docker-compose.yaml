@@ -21,3 +21,39 @@ services:
       - matemamusic-fpm
     ports:
       - 80:80
+
+  user-svc-fpm:
+    build: ./docker/user-svc-fpm
+    volumes:
+      - ./user-svc:/var/www
+  
+  user-svc-nginx:
+    build: ./docker/user-svc-nginx
+    volumes:
+      - ./user-svc:/var/www
+    depends_on:
+      - user-svc-fpm
+
+  catalog-svc-fpm:
+    build: ./docker/catalog-svc-fpm
+    volumes:
+      - ./catalog-svc:/var/www
+  
+  catalog-svc-nginx:
+    build: ./docker/catalog-svc-nginx
+    volumes:
+      - ./catalog-svc:/var/www
+    depends_on:
+      - catalog-svc-fpm
+
+  playlist-svc-fpm:
+    build: ./docker/playlist-svc-fpm
+    volumes:
+      - ./playlist-svc:/var/www
+  
+  playlist-svc-nginx:
+    build: ./docker/playlist-svc-nginx
+    volumes:
+      - ./playlist-svc:/var/www
+    depends_on:
+      - playlist-svc-fpm
