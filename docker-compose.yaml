@@ -9,7 +9,7 @@ services:
 
       
   matemamusic-fpm:
-    build: ./docker/matemamusic-fpm
+    build: ./docker/fpm
     volumes:
       - ./matemamusic:/var/www
   
@@ -23,7 +23,7 @@ services:
       - 80:80
 
   user-svc-fpm:
-    build: ./docker/user-svc-fpm
+    build: ./docker/fpm
     volumes:
       - ./user-svc:/var/www
   
@@ -35,7 +35,7 @@ services:
       - user-svc-fpm
 
   catalog-svc-fpm:
-    build: ./docker/catalog-svc-fpm
+    build: ./docker/fpm
     volumes:
       - ./catalog-svc:/var/www
   
@@ -47,7 +47,7 @@ services:
       - catalog-svc-fpm
 
   playlist-svc-fpm:
-    build: ./docker/playlist-svc-fpm
+    build: ./docker/fpm
     volumes:
       - ./playlist-svc:/var/www
   
