@@ -1,3 +1,8 @@
+volumes:
+  catalog-svc-data:
+  playlist-svc-data:
+  user-svc-data:
+
 services:
 
   dev:
@@ -22,10 +27,21 @@ services:
     ports:
       - 80:80
 
+  user-svc-db:
+    image: postgres:16
+    shm_size: 128mb
+    volumes:
+      - user-svc-data:/var/lib/postgresql/data
+      - ./user-svc/sql-init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: postgres-user
+
   user-svc-fpm:
     build: ./docker/fpm
     volumes:
       - ./user-svc:/var/www
+    depends_on:
+      - user-svc-db
   
   user-svc-nginx:
     build: ./docker/user-svc-nginx
@@ -34,10 +50,21 @@ services:
     depends_on:
       - user-svc-fpm
 
+  catalog-svc-db:
+    image: postgres:16
+    shm_size: 128mb
+    volumes:
+      - catalog-svc-data:/var/lib/postgresql/data
+      - ./catalog-svc/sql-init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: postgres-catalog
+
   catalog-svc-fpm:
     build: ./docker/fpm
     volumes:
       - ./catalog-svc:/var/www
+    depends_on:
+      - catalog-svc-db
   
   catalog-svc-nginx:
     build: ./docker/catalog-svc-nginx
@@ -46,10 +73,21 @@ services:
     depends_on:
       - catalog-svc-fpm
 
+  playlist-svc-db:
+    image: postgres:16
+    shm_size: 128mb
+    volumes:
+      - playlist-svc-data:/var/lib/postgresql/data
+      - ./playlist-svc/sql-init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: postgres-playlist
+
   playlist-svc-fpm:
     build: ./docker/fpm
     volumes:
       - ./playlist-svc:/var/www
+    depends_on:
+      - playlist-svc-db
   
   playlist-svc-nginx:
     build: ./docker/playlist-svc-nginx
