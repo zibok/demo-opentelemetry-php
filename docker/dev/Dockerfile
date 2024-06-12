@@ -5,9 +5,12 @@ RUN apt update && \
     apt install -yq \
       curl \
       git \
+      libpq-dev \
       unzip \
     && \
     rm -rf /var/lib/apt/lists
+
+RUN docker-php-ext-install pdo pdo_pgsql
 
 # Install Composer, Symfony
 RUN curl -sS https://getcomposer.org/installer | php -- --2 --install-dir=/usr/local/bin --filename=composer \

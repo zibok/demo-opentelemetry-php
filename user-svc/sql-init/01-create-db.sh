@@ -8,11 +8,13 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
 EOSQL
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "userdb" <<-EOSQL
-	CREATE TABLE IF NOT EXISTS "user" (
+	CREATE TABLE IF NOT EXISTS "mmm_user" (
 		id SERIAL,
 		name varchar(255),
 		PRIMARY KEY (id)
 	);
 
-	INSERT INTO "user" (name) VALUES ('Vince'), ('Marie'), ('Raphaël'), ('Swan');
+  GRANT ALL ON "mmm_user" TO user_rw;
+
+	INSERT INTO "mmm_user" (name) VALUES ('Vince'), ('Marie'), ('Raphaël'), ('Swan');
 EOSQL
