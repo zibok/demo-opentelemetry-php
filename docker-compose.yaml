@@ -9,10 +9,14 @@ services:
     build: ./docker/dev
     command: sleep infinity
     volumes:
+      # In order to use the same user as the host shell
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
       - .:/demo-opentelemetry-php
+    user: $UID:$GID
     working_dir: /demo-opentelemetry-php
 
-      
   matemamusic-fpm:
     build: ./docker/fpm
     volumes:
