@@ -20,4 +20,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --2 --install-dir=/usr/l
 
 RUN useradd -m -u1001 -U -s /bin/bash dev
 
+# Install Node JS
+ENV NODE_VERSION=22
+ENV npm_config_cache=/tmp
+RUN (curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - ) && apt-get install -y nodejs
+
 USER dev

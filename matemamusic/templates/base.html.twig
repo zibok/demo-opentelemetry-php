@@ -2,16 +2,32 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Welcome!{% endblock %} - Mate Ma Music</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
+        <div id="app"></div>
+        {% block topbar %}
+        {#<div {{ react_component('App') }}></div>#}
+        {#<nav id="topbar" class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+            <h1>Mate Ma Music</h1>
+            <div id="user-selector-wrapper">
+                <span>Choose a user:</span>    
+                <select id="user-selector" name="user">
+                    <option value=""></option>
+                    <option value="1">Zibok</option>
+                    <option value="2">Marie</option>
+                </select>
+            </div>
+        </nav>#}
+        {% endblock %}
         {% block body %}{% endblock %}
     </body>
 </html>
