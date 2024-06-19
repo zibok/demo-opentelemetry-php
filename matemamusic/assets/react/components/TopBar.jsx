@@ -2,9 +2,6 @@ import { AppBar, Box, FormControl, InputLabel, MenuItem, Select, Toolbar, Typogr
 import React from "react";
 
 export default function (props) {
-    const handleChange= (event) => {
-        alert(`Selected User: ${event.target.value}`);
-    }
     return <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
             <Toolbar>
@@ -14,9 +11,9 @@ export default function (props) {
                 <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
                 <Select labelId="user-selector-label"
                         label="User"
-                        onChange={handleChange}>
+                        onChange={props.onUserChange}>
                     {props.users.map((item) =>
-                        <MenuItem value={item.id}>{item.name}</MenuItem>
+                        <MenuItem value={item.id + "/" + item.name}>{item.name}</MenuItem>
                     )}
                 </Select>
                 </FormControl>

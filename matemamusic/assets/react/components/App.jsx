@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import TopBar from './TopBar';
-
-function loadingOrTopBar(loading, users) {
-    if (loading) {
-        return <h1>Loading...</h1>
-    } else {
-        return <TopBar users={users} />
-    }
-}
+import PlaylistBoard from './PlaylistBoard';
 
 export default function App() {
     const [users, setUsers] = useState([]);
+    const [currentUser, setCurrentUser] = useState({ id: 0, name: ""});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {fetchUsers()}, []);
@@ -30,9 +24,19 @@ export default function App() {
         }
     };
 
-    return (
-        <div>
-        {loadingOrTopBar(loading, users)}
-        </div>
-    )
+    const handleUserChange = (event) => {
+        const [id, name] = event.target.value.split("/")
+        setCurrentUser({id: id, name: name});
+    } 
+
+    if (loading) {
+        return <h1>Loading...</h1>
+    } else {
+        return (
+            <div>
+                <TopBar users={users} onUserChange={handleUserChange}/>
+                <PlaylistBoard currentUser={currentUser}/>
+           </div>
+        )
+    } 
 }
