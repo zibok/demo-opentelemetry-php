@@ -9,7 +9,7 @@ use App\Exception\UserNotFoundException;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 
-final readonly class DBUserRepository implements UserRepository
+final readonly class DBUserRepository implements UserRepositoryInterface
 {
     public function __construct(private Connection $dbConnection)
     {

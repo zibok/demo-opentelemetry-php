@@ -8,11 +8,15 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
 EOSQL
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "playlistdb" <<-EOSQL
-	CREATE TABLE IF NOT EXISTS "playlist" (
+	CREATE TABLE IF NOT EXISTS "mmm_playlist" (
 		id SERIAL,
 		name varchar(255),
 		owner integer,
+		created_at timestamp NOT NULL DEFAULT NOW(),
 		PRIMARY KEY (id)
 	);
-	CREATE INDEX playlist_owner ON "playlist" (owner);
+	CREATE INDEX playlist_owner ON "mmm_playlist" (owner);
+
+	GRANT ALL ON "mmm_playlist" TO playlist_rw;
+	GRANT ALL ON "mmm_playlist_id_seq" TO playlist_rw;
 EOSQL

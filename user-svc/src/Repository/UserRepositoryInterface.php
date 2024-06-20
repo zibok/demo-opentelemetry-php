@@ -6,9 +6,8 @@ namespace App\Repository;
 
 use App\Entity\User;
 use App\Exception\UserNotFoundException;
-use Doctrine\ORM\EntityManagerInterface;
 
-interface UserRepository
+interface UserRepositoryInterface
 {
     /**
      * @return User[]

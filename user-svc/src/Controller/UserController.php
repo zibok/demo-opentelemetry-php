@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Repository\UserRepository;
+use App\Repository\UserRepositoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final readonly class UserController
 {
-    public function __construct(private UserRepository $repository)
+    public function __construct(private UserRepositoryInterface $repository)
     {
     }
 
