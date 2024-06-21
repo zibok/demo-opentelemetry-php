@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import TopBar from './TopBar';
 import PlaylistBoard from './PlaylistBoard';
+import {CircularProgress, SelectChangeEvent} from "@mui/material";
+import {User} from "../types/User";
 
 export default function App() {
-    const [users, setUsers] = useState([]);
-    const [currentUser, setCurrentUser] = useState({ id: 0, name: ""});
-    const [loading, setLoading] = useState(true);
+    const [users, setUsers] = useState<User[]>([]);
+    const [currentUser, setCurrentUser] = useState<User>({ id: 0, name: ""} as User);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {fetchUsers()}, []);
 
@@ -24,13 +26,13 @@ export default function App() {
         }
     };
 
-    const handleUserChange = (event) => {
+    const handleUserChange = (event: SelectChangeEvent<string>) => {
         const [id, name] = event.target.value.split("/")
-        setCurrentUser({id: id, name: name});
+        setCurrentUser({id: parseInt(id), name: name} as User);
     } 
 
     if (loading) {
-        return <h1>Loading...</h1>
+        return <CircularProgress />
     } else {
         return (
             <div>

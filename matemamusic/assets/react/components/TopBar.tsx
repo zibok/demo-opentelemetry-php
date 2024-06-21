@@ -1,7 +1,22 @@
-import { AppBar, Box, FormControl, InputLabel, MenuItem, Select, Toolbar, Typography } from "@mui/material";
-import React from "react";
+import {
+    AppBar,
+    Box,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    SelectChangeEvent,
+    Toolbar,
+    Typography
+} from "@mui/material";
+import React, {ReactNode} from "react";
+import {User} from "../types/User";
 
-export default function (props) {
+export type TopBarProps = {
+    users: User[];
+    onUserChange: (event: SelectChangeEvent, child: ReactNode) => void;
+}
+export default function TopBar(props: TopBarProps) {
     return <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
             <Toolbar>

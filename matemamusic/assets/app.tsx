@@ -6,10 +6,12 @@ import React, { StrictMode } from 'react';
 import App from './react/components/App';
 
 const container = document.getElementById('app');
-const root = createRoot(container);
+if (container !== null) {
+    const root = createRoot(container);
 
-root.render(
-    <StrictMode>
-        <App />
-    </StrictMode>
-)
+    root.render(
+        <StrictMode>
+            <App/>
+        </StrictMode>
+    );
+}
