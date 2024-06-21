@@ -15,7 +15,7 @@ final class PlaylistController
     }
 
     #[Route("/user/{userId}/list", name: "app_playlist_list", methods: ["GET"])]
-    public function list(int $userId)
+    public function list(int $userId): Response
     {
         $playlists = $this->playlistRepository->findPlaylistsByOwner($userId);
 
@@ -31,7 +31,7 @@ final class PlaylistController
     }
 
     #[Route('/create', name:'app_playlist_create', methods: ['POST'])]
-    public function create(Request $request)
+    public function create(Request $request): Response
     {
         $payload = $request->getContent();
         $data = json_decode($payload);
