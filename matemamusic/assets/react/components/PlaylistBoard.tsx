@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {User} from "../types/User";
 import {Playlist} from "../types/Playlist";
-import {Box, Button, CircularProgress, List, ListItem, Modal, Typography} from "@mui/material";
+import {Box, Button, CircularProgress, List, ListItemText, Typography} from "@mui/material";
 import PlaylistCreationModal from "./PlaylistCreationModal";
 
 export type PlaylistBoardProps = {
@@ -13,7 +13,7 @@ function listOfPlaylists(playlists: Playlist[]) {
         return (
             <List>
                 {playlists.map(item => {
-                    return <ListItem key={`playlist-${item.id}`}>{item.name}</ListItem>
+                    return <ListItemText key={`playlist-${item.id}`}>{item.name}</ListItemText>
                 })}
             </List>
         );
@@ -24,9 +24,11 @@ export default function PlaylistBoard(props: PlaylistBoardProps) {
     const [playlists, setPlaylists] = useState<Playlist[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [modalOpen, setModalOpen] = useState(false);
-    const handleClose = () => {
-        setModalOpen(false);
-        refresh();
+    const handleClose = (event: Object, reason?: string) => {
+        if (reason !== 'backdropClick') {
+            setModalOpen(false);
+            refresh();
+        }
     }
 
     const refresh = () => {
@@ -73,8 +75,10 @@ export default function PlaylistBoard(props: PlaylistBoardProps) {
 
     return (
         <Box width={"100%"}>
-            <Typography variant="h2">{"Playlists of user " + props.currentUser.name}</Typography>
-            <Button variant="contained" onClick={() => {setModalOpen(true)}}>Create a new playlist</Button>
+            <Box sx={{display: "flex", paddingTop: "10px", paddingBottom: "10px"}}>
+                <Typography variant="h6" paddingRight="1em">{"Playlists of user " + props.currentUser.name}</Typography>
+                <Button variant="contained" onClick={() => {setModalOpen(true)}}>Create a new playlist</Button>
+            </Box>
             <PlaylistCreationModal
                 open={modalOpen}
                 onClose={handleClose}

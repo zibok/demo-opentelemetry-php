@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import TopBar from './TopBar';
 import PlaylistBoard from './PlaylistBoard';
-import {CircularProgress, SelectChangeEvent} from "@mui/material";
+import {Box, CircularProgress, CssBaseline, SelectChangeEvent, ThemeProvider, createTheme} from "@mui/material";
 import {User} from "../types/User";
+
+const defaultTheme = createTheme();
 
 export default function App() {
     const [users, setUsers] = useState<User[]>([]);
@@ -35,10 +37,13 @@ export default function App() {
         return <CircularProgress />
     } else {
         return (
-            <div>
-                <TopBar users={users} onUserChange={handleUserChange}/>
-                <PlaylistBoard currentUser={currentUser}/>
-           </div>
+            <ThemeProvider theme={defaultTheme}>
+                <CssBaseline />
+                <Box>
+                    <TopBar users={users} onUserChange={handleUserChange}/>
+                    <PlaylistBoard currentUser={currentUser}/>
+                </Box>
+           </ThemeProvider>
         )
     } 
 }

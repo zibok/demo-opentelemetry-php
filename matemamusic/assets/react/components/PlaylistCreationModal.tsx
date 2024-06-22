@@ -1,4 +1,4 @@
-import {Box, Button, CircularProgress, FormControl, Modal, TextField, Typography} from "@mui/material";
+import {Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, TextField} from "@mui/material";
 import React, {useState} from "react";
 
 const modalStyle = {
@@ -24,19 +24,28 @@ export default function (props: PlaylistCreationModalProps) {
     const [name, setName] = useState("")
 
     const loadingFormBody = (
-        <CircularProgress/>
+        <DialogContent>
+            <CircularProgress/>
+        </DialogContent>
     )
     const regularFormBody = (
-        <FormControl>
-            <TextField
-                id="new-playlist-name"
-                label="Playlist name"
-                variant="outlined"
-                required
-                onChange={e => setName(e.target.value)}
-            />
-            <Button onClick={() => triggerPlaylistCreation(props.playlistOwnerId, name)}>Create</Button>
-        </FormControl>
+        <div>
+            <DialogContent>
+                <FormControl>
+                    <TextField
+                        id="new-playlist-name"
+                        label="Playlist name"
+                        variant="outlined"
+                        required
+                        onChange={e => setName(e.target.value)}
+                    />
+                </FormControl>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={() => triggerPlaylistCreation(props.playlistOwnerId, name)}>Create</Button>
+                <Button onClick={() => props.onClose({}, "Cancelled")}>Cancel</Button>
+            </DialogActions>
+        </div>
     )
 
     const triggerPlaylistCreation= async (ownerId: number, name: string) => {
@@ -66,18 +75,14 @@ export default function (props: PlaylistCreationModalProps) {
 
 
     return (
-        <Modal
+        <Dialog disableEscapeKeyDown
             open={props.open}
             onClose={props.onClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
-            <Box sx={modalStyle} component="form">
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Create a new playlist
-                </Typography>
-                {loading ? loadingFormBody : regularFormBody}
-            </Box>
-        </Modal>
+            <DialogTitle>New playlist</DialogTitle>
+            {loading ? loadingFormBody : regularFormBody}
+        </Dialog>
     )
 }

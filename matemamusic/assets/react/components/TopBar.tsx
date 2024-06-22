@@ -20,17 +20,15 @@ export default function TopBar(props: TopBarProps) {
     return <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
             <Toolbar>
-                <Typography variant="h1" component="div" sx={{ flexGrow: 1 }}>Mate Ma Music !</Typography>
-                <InputLabel id="user-selector-label">Choose a user</InputLabel>
-
-                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
-                <Select labelId="user-selector-label"
-                        label="User"
-                        onChange={props.onUserChange}>
-                    {props.users.map((item) =>
-                        <MenuItem value={item.id + "/" + item.name}>{item.name}</MenuItem>
-                    )}
-                </Select>
+                <Typography component="h1" variant="h6" sx={{flexGrow: 1}}>Mate Ma Music !</Typography>
+                <FormControl variant="outlined" sx={{ m: 1, minWidth: 150 }}>
+                    <InputLabel id="user-selector-label">Choose a user</InputLabel>
+                    <Select labelId="user-selector-label"
+                            onChange={props.onUserChange}>
+                        {props.users.map((item) =>
+                            <MenuItem value={item.id + "/" + item.name}>{item.name}</MenuItem>
+                        )}
+                    </Select>
                 </FormControl>
             </Toolbar>
         </AppBar>
