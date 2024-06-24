@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Playlist;
+use App\Entity\VO\Track;
 use Doctrine\DBAL\Connection;
 
 final class DBPlaylistRepository implements PlaylistRepositoryInterface
@@ -21,13 +22,23 @@ final class DBPlaylistRepository implements PlaylistRepositoryInterface
     public function findPlaylistsByOwner(int $owner): array
     {
         $queryBuilder = $this->dbConnection->createQueryBuilder();
-        $result = $queryBuilder->select(['id', 'name', 'owner'])
+        $result = $queryBuilder->select([
+                                    'id',
+                                    'name',
+                                    'owner',
+                               ])
+                               ->addSelect('array_to_json(track_list) as "trackListJson"')
                                ->from(self::TABLE_NAME)
                                ->where($queryBuilder->expr()->eq('owner', $owner))
                                ->executeQuery();
         $playlists = [];
         foreach($result->fetchAllAssociative() as $row) {
-            $playlists[] = new Playlist($row['id'], $row['name'], $row['owner']);
+            $trackList = [];
+            /** @var int $trackId */
+            foreach(json_decode($row['trackListJson']) as $trackId) {
+                $trackList[] = new Track($trackId);
+            }
+            $playlists[] = new Playlist($row['id'], $row['name'], $row['owner'], $trackList);
         }
         return $playlists;
     }

@@ -3,7 +3,7 @@ import {User} from "../types/User";
 import {Playlist} from "../types/Playlist";
 import {Box, Button, CircularProgress, Grid, Paper, Typography} from "@mui/material";
 import PlaylistCreationModal from "./PlaylistCreationModal";
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import PlaylistItem from "./PlaylistItem";
 
 export type PlaylistBoardProps = {
     currentUser: User;
@@ -20,16 +20,7 @@ function listOfPlaylists(playlists: Playlist[]): ReactNode {
 
     return (
         <Grid container spacing={1}>
-            {playlists.map(item => {
-                return (
-                    <Grid item xs={12} sm={6}>
-                    <Paper key={`playlist-${item.id}`} elevation={3}>
-                        <Typography component="h2" variant="h6"><MusicNoteIcon/>{item.name}</Typography>
-                        <div>Soon the tracks</div>
-                    </Paper>
-                    </Grid>
-                )
-            })}
+            {playlists.map(item => <PlaylistItem playlist={item} />)}
         </Grid>
     );
 }

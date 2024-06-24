@@ -24,7 +24,12 @@ final class PlaylistController
             $result[] = [
                 'id' => $playlist->getId(),
                 'name' => $playlist->getName(),
+                'trackList' => array_map(
+                    fn($item) => [ 'id' => $item->id],
+                    $playlist->getTrackList(),
+                ),
             ];
+
         }
 
         return new JsonResponse(

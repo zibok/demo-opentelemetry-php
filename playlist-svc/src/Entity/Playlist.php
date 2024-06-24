@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\VO\Track;
+
 final class Playlist
 {
+    /**
+     * @param Track[] $trackList
+     */
     public function __construct(
         private ?int $id,
         private string $name,
         private int $owner,
+        private array $trackList,
     ) {
     }
 
@@ -43,6 +49,24 @@ final class Playlist
     public function setOwner(int $owner): Playlist
     {
         $this->owner = $owner;
+        return $this;
+    }
+
+    
+    /**
+     * @return Track[]
+     */
+    public function getTrackList(): array
+    {
+        return $this->trackList;
+    }
+
+    /**
+     * @param Track[] $trackList
+     */
+    public function setTrackList(array $trackList): Playlist
+    {
+        $this->trackList = $trackList;
         return $this;
     }
 }
