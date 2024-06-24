@@ -34,8 +34,13 @@ final class DBPlaylistRepository implements PlaylistRepositoryInterface
         $playlists = [];
         foreach($result->fetchAllAssociative() as $row) {
             $trackList = [];
+            if (is_null($row['trackListJson'])) {
+                $trackIds = [];    
+            } else {
+                $trackIds = json_decode($row['trackListJson']);
+            }
             /** @var int $trackId */
-            foreach(json_decode($row['trackListJson']) as $trackId) {
+            foreach($trackIds as $trackId) {
                 $trackList[] = new Track($trackId);
             }
             $playlists[] = new Playlist($row['id'], $row['name'], $row['owner'], $trackList);
