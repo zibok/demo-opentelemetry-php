@@ -1,23 +1,37 @@
-import React, {useEffect, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import {User} from "../types/User";
 import {Playlist} from "../types/Playlist";
-import {Box, Button, CircularProgress, List, ListItemText, Typography} from "@mui/material";
+import {Box, Button, CircularProgress, Grid, Paper, Typography} from "@mui/material";
 import PlaylistCreationModal from "./PlaylistCreationModal";
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
 export type PlaylistBoardProps = {
     currentUser: User;
 }
 
-function listOfPlaylists(playlists: Playlist[]) {
-    if (playlists.length > 0) {
+function listOfPlaylists(playlists: Playlist[]): ReactNode {
+    if (playlists.length == 0) {
         return (
-            <List>
-                {playlists.map(item => {
-                    return <ListItemText key={`playlist-${item.id}`}>{item.name}</ListItemText>
-                })}
-            </List>
+            <Paper elevation={3}>
+                No playlist for the moment
+            </Paper>
         );
     }
+
+    return (
+        <Grid container spacing={1}>
+            {playlists.map(item => {
+                return (
+                    <Grid item xs={12} sm={6}>
+                    <Paper key={`playlist-${item.id}`} elevation={3}>
+                        <Typography component="h2" variant="h6"><MusicNoteIcon/>{item.name}</Typography>
+                        <div>Soon the tracks</div>
+                    </Paper>
+                    </Grid>
+                )
+            })}
+        </Grid>
+    );
 }
 
 export default function PlaylistBoard(props: PlaylistBoardProps) {
@@ -74,7 +88,7 @@ export default function PlaylistBoard(props: PlaylistBoardProps) {
     }
 
     return (
-        <Box width={"100%"}>
+        <Box width={"100%"} component="main" sx={{ flexGrow: 1 }}>
             <Box sx={{display: "flex", paddingTop: "10px", paddingBottom: "10px"}}>
                 <Typography variant="h6" paddingRight="1em">{"Playlists of user " + props.currentUser.name}</Typography>
                 <Button variant="contained" onClick={() => {setModalOpen(true)}}>Create a new playlist</Button>
