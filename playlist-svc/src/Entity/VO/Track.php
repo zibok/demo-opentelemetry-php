@@ -8,9 +8,6 @@ final readonly class Track
 {
     public function __construct(
         public int $id,
-        public string $title = '',
-        public string $author = '',
-        public string $link = '',
     ) {
     }
 }
