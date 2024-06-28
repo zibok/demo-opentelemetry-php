@@ -54,6 +54,12 @@ class UserController
 
         $playlists = $response->toArray();
 
+        foreach($playlists['items'] as &$playlist) {
+            foreach($playlist["trackList"] as &$track) {
+                $this->hydrateTrack($track);
+            }
+        }
+
         return new JsonResponse([
             'playlists' => $playlists['items'],
         ], 200);
@@ -83,5 +89,22 @@ class UserController
         }
 
         return new Response("", 204);
+    }
+
+    private function hydrateTrack(array &$track): void
+    {
+        $response = $this->client->request(
+            'GET',
+            "http://catalog-svc-nginx/tracks/{$track['id']}"
+        );
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception("Unable to retrieve track #{$track['id']}");
+        }
+
+        $trackInfo = $response->toArray();
+
+        foreach(['title', 'author', 'link'] as $index) {
+            $track[$index] = $trackInfo[$index];
+        }
     }
 }

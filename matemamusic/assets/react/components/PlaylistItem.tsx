@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Playlist } from '../types/Playlist';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Link, Paper, Typography } from '@mui/material';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
@@ -9,10 +9,16 @@ type PlaylistItemProps = {
 }
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Name', width: 70 },
-    { field: 'author', headerName: 'Author', width: 70 },
-    { field: 'link', headerName: 'Link', width: 70 },
+    { field: 'id', headerName: 'ID', width: 50 },
+    { field: 'title', headerName: 'Title', width: 315 },
+    { field: 'author', headerName: 'Author', width: 250 },
+    { 
+        field: 'link', 
+        headerName: 'Link', 
+        renderCell: (params) => ( 
+            <Link href={params.row.link}>Go</Link>
+        ),
+     },
 ];
   
 export default function PlaylistItem(props: PlaylistItemProps): ReactNode {
