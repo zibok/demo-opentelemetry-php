@@ -37,24 +37,28 @@ final class Track
     public function setId(int $id): Track
     {
         $this->id = $id;
+
         return $this;
     }
 
     public function setTitle(string $title): Track
     {
         $this->title = $title;
+
         return $this;
     }
 
     public function setAuthor(string $author): Track
     {
         $this->author = $author;
+
         return $this;
     }
 
     public function setLink(string $link): Track
     {
         $this->link = $link;
+
         return $this;
     }
 }
