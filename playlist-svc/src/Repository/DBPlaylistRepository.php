@@ -23,24 +23,25 @@ final class DBPlaylistRepository implements PlaylistRepositoryInterface
     {
         $queryBuilder = $this->dbConnection->createQueryBuilder();
         $result = $queryBuilder->select([
-                                    'id',
-                                    'name',
-                                    'owner',
-                               ])
+            'id',
+            'name',
+            'owner',
+        ])
                                ->addSelect('array_to_json(track_list) as "trackListJson"')
                                ->from(self::TABLE_NAME)
                                ->where($queryBuilder->expr()->eq('owner', $owner))
                                ->executeQuery();
         $playlists = [];
-        foreach($result->fetchAllAssociative() as $row) {
+        foreach ($result->fetchAllAssociative() as $row) {
             $trackList = [];
             $trackIds = is_null($row['trackListJson']) ? [] : json_decode($row['trackListJson']);
             /** @var int $trackId */
-            foreach($trackIds as $trackId) {
+            foreach ($trackIds as $trackId) {
                 $trackList[] = new Track($trackId);
             }
             $playlists[] = new Playlist($row['id'], $row['name'], $row['owner'], $trackList);
         }
+
         return $playlists;
     }
 
@@ -52,8 +53,8 @@ final class DBPlaylistRepository implements PlaylistRepositoryInterface
         $queryBuilder = $this->dbConnection->createQueryBuilder();
         $queryBuilder->insert(self::TABLE_NAME)
                      ->values([
-                        'name' => '?',
-                        'owner'=> '?',
+                         'name' => '?',
+                         'owner' => '?',
                      ])
                      ->setParameter(0, $name)
                      ->setParameter(1, $owner)

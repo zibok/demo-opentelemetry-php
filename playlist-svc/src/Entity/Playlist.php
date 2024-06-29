@@ -27,6 +27,7 @@ final class Playlist
     public function setId(?int $id): Playlist
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -38,6 +39,7 @@ final class Playlist
     public function setName(string $name): Playlist
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -49,10 +51,10 @@ final class Playlist
     public function setOwner(int $owner): Playlist
     {
         $this->owner = $owner;
+
         return $this;
     }
 
-    
     /**
      * @return Track[]
      */
@@ -67,6 +69,7 @@ final class Playlist
     public function setTrackList(array $trackList): Playlist
     {
         $this->trackList = $trackList;
+
         return $this;
     }
 }

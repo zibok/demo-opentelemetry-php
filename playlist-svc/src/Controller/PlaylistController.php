@@ -14,7 +14,7 @@ final class PlaylistController
     {
     }
 
-    #[Route("/user/{userId}/playlists", name: "app_playlist_list", methods: ["GET"])]
+    #[Route('/user/{userId}/playlists', name: 'app_playlist_list', methods: ['GET'])]
     public function list(int $userId): Response
     {
         $playlists = $this->playlistRepository->findPlaylistsByOwner($userId);
@@ -25,11 +25,10 @@ final class PlaylistController
                 'id' => $playlist->getId(),
                 'name' => $playlist->getName(),
                 'trackList' => array_map(
-                    fn($item) => [ 'id' => $item->id],
+                    fn ($item) => ['id' => $item->id],
                     $playlist->getTrackList(),
                 ),
             ];
-
         }
 
         return new JsonResponse(
@@ -38,13 +37,13 @@ final class PlaylistController
         );
     }
 
-    #[Route('/create', name:'app_playlist_create', methods: ['POST'])]
+    #[Route('/create', name: 'app_playlist_create', methods: ['POST'])]
     public function create(Request $request): Response
     {
         $payload = $request->getContent();
         $data = json_decode($payload);
         $this->playlistRepository->createNewPlaylist($data->ownerId, $data->name);
 
-        return new Response('',204);
+        return new Response('', 204);
     }
 }
