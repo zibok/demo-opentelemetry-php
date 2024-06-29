@@ -2,12 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class UserController
 {
@@ -24,7 +23,7 @@ class UserController
             'http://user-svc-nginx/list'
         );
 
-        if ($response->getStatusCode() != 200) {
+        if (200 != $response->getStatusCode()) {
             return new JsonResponse(
                 ['error' => 'Unable to fetch user list'],
                 500,
@@ -45,7 +44,7 @@ class UserController
             'GET',
             "http://playlist-svc-nginx/user/$userId/playlists"
         );
-        if ($response->getStatusCode() != 200) {
+        if (200 != $response->getStatusCode()) {
             return new JsonResponse(
                 ['error' => 'Unable to fetch user playlists'],
                 500,
@@ -54,8 +53,8 @@ class UserController
 
         $playlists = $response->toArray();
 
-        foreach($playlists['items'] as &$playlist) {
-            foreach($playlist["trackList"] as &$track) {
+        foreach ($playlists['items'] as &$playlist) {
+            foreach ($playlist['trackList'] as &$track) {
                 $this->hydrateTrack($track);
             }
         }
@@ -73,7 +72,7 @@ class UserController
 
         $response = $this->client->request(
             'POST',
-            "http://playlist-svc-nginx/create",
+            'http://playlist-svc-nginx/create',
             [
                 'headers' => [
                     'Content-Type' => 'application/json',
@@ -81,14 +80,14 @@ class UserController
                 'json' => ['ownerId' => $userId, 'name' => $data->name],
             ]
         );
-        if ($response->getStatusCode() != 204) {
+        if (204 != $response->getStatusCode()) {
             return new JsonResponse(
                 ['error' => 'Unable to fetch user playlists'],
                 500,
             );
         }
 
-        return new Response("", 204);
+        return new Response('', 204);
     }
 
     private function hydrateTrack(array &$track): void
@@ -97,13 +96,13 @@ class UserController
             'GET',
             "http://catalog-svc-nginx/tracks/{$track['id']}"
         );
-        if ($response->getStatusCode() != 200) {
+        if (200 != $response->getStatusCode()) {
             throw new \Exception("Unable to retrieve track #{$track['id']}");
         }
 
         $trackInfo = $response->toArray();
 
-        foreach(['title', 'author', 'link'] as $index) {
+        foreach (['title', 'author', 'link'] as $index) {
             $track[$index] = $trackInfo[$index];
         }
     }
