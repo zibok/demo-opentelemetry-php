@@ -17,7 +17,7 @@ final readonly class UserController
     }
 
     #[Route('/list', name: 'list', methods: ['GET'])]
-    function list(): Response
+    public function list(): Response
     {
         $users = $this->repository->findAll();
 
@@ -30,12 +30,12 @@ final readonly class UserController
         }
 
         return new JsonResponse([
-            "items" => $items,
+            'items' => $items,
         ]);
     }
 
     #[Route('/create', name: 'create', methods: ['POST'])]
-    function create(): Response
+    public function create(): Response
     {
         throw HttpException::fromStatusCode(501, '/create is not implemented yet');
     }

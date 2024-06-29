@@ -67,5 +67,8 @@
             "require": "7.1.*",
             "docker": false
         }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.59"
     }
 }

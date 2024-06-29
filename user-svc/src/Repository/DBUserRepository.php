@@ -7,7 +7,6 @@ namespace App\Repository;
 use App\Entity\User;
 use App\Exception\UserNotFoundException;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\EntityManagerInterface;
 
 final readonly class DBUserRepository implements UserRepositoryInterface
 {
@@ -17,6 +16,7 @@ final readonly class DBUserRepository implements UserRepositoryInterface
 
     /**
      * @return User[]
+     *
      * @throws \Exception
      */
     public function findAll(): array
@@ -34,12 +34,12 @@ final readonly class DBUserRepository implements UserRepositoryInterface
         return $users;
     }
 
-    function getById(int $id): User
+    public function getById(int $id): User
     {
         throw new UserNotFoundException("User not found ($id)");
     }
 
-    function save(User $user)
+    public function save(User $user)
     {
         // TODO: Implement save() method.
     }

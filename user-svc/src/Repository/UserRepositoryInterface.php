@@ -12,12 +12,12 @@ interface UserRepositoryInterface
     /**
      * @return User[]
      */
-    function findAll(): array;
+    public function findAll(): array;
 
     /**
      * @throws UserNotFoundException
      */
-    function getById(int $id): User;
+    public function getById(int $id): User;
 
-    function save(User $user);
+    public function save(User $user);
 }
