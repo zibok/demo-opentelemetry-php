@@ -1,13 +1,9 @@
 import { ReactNode } from "react";
+import { Track } from "./Track";
 
 export type Playlist = {
     id: number;
     name: string;
     ownerId: number;
-    trackList: {
-        id: number;
-        title: string;
-        author: string;
-        link: string;
-    }[];
+    trackList: Track[];
 };

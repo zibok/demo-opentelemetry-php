@@ -65,7 +65,7 @@ export default function PlaylistBoard(props: PlaylistBoardProps) {
     
     if (props.currentUser.id === 0) {
         return (
-            <h1>{"Please, select a user"}</h1>
+            <Typography component="h1" variant="h4">{"Please, select a user"}</Typography>
         )
     }
     
