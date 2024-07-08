@@ -10,7 +10,7 @@ type PlaylistItemProps = {
 }
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 50 },
+    { field: 'id', headerName: '#', width: 50 },
     { field: 'title', headerName: 'Title', width: 315 },
     { field: 'author', headerName: 'Author', width: 250 },
     { 
@@ -32,6 +32,13 @@ export default function PlaylistItem(props: PlaylistItemProps): ReactNode {
         }
     }
 
+    const rows = props.playlist.trackList.map((track, index) => {
+        return {
+            id: index + 1,
+            ...track,
+        };
+    })
+
     return (
         <Grid item xs={12} sm={6} key={`playlist-${props.playlist.id}`}>
         <Paper elevation={3}>
@@ -45,7 +52,7 @@ export default function PlaylistItem(props: PlaylistItemProps): ReactNode {
             <DataGrid 
                 autoHeight
                 columns={columns}
-                rows={props.playlist.trackList}
+                rows={rows}
                 initialState={{
                     pagination: {
                         paginationModel: { page: 0, pageSize: 5 },

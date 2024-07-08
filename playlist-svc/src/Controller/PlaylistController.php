@@ -87,7 +87,7 @@ final class PlaylistController
             'id' => $playlist->getId(),
             'name' => $playlist->getName(),
             'trackList' => array_map(
-                fn ($item) => ['id' => $item->id],
+                fn ($item) => ['trackId' => $item->id],
                 $playlist->getTrackList(),
             ),
         ];

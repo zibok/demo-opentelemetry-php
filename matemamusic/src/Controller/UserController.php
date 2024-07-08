@@ -94,10 +94,10 @@ class UserController
     {
         $response = $this->client->request(
             'GET',
-            "http://catalog-svc-nginx/tracks/{$track['id']}"
+            "http://catalog-svc-nginx/tracks/{$track['trackId']}"
         );
         if (200 != $response->getStatusCode()) {
-            throw new \Exception("Unable to retrieve track #{$track['id']}");
+            throw new \Exception("Unable to retrieve track #{$track['trackId']}");
         }
 
         $trackInfo = $response->toArray();

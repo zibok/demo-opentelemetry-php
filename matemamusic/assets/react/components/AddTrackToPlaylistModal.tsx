@@ -10,7 +10,7 @@ export type AddTrackToPlaylistModalProps = {
 };
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 50 },
+    { field: 'trackId', headerName: 'ID', width: 50 },
     { field: 'title', headerName: 'Title', width: 315 },
     { field: 'author', headerName: 'Author', width: 250 },
     { 
@@ -47,6 +47,8 @@ export default function AddTrackToPlaylistModal(props: AddTrackToPlaylistModalPr
         }
     };
 
+    const getRowId = (row: Track): number => row.trackId;
+
     const loadingFormBody = (
         <DialogContent>
             <CircularProgress/>
@@ -74,11 +76,12 @@ export default function AddTrackToPlaylistModal(props: AddTrackToPlaylistModalPr
                         },
                     }}
                     pageSizeOptions={[5, 10]}
+                    getRowId={getRowId}
                     
                     onRowSelectionModelChange={(rowSelectionModel: GridRowSelectionModel) => {
                         const selectedIDs = new Set(rowSelectionModel);
                         const selectedRows = tracks.filter((row) =>
-                          selectedIDs.has(row.id),
+                          selectedIDs.has(row.trackId),
                         );
               
                         setSelectedTracks(selectedRows);
