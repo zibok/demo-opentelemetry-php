@@ -24,13 +24,13 @@ final class TrackController
         try {
             $track = $this->trackRepository->getById($id);
 
-            return new JsonResponse($this->normalizeTrack($track), 200);
+            return new JsonResponse($this->normalizeTrack($track), Response::HTTP_OK);
         } catch (TrackNotFoundException $e) {
             return new JsonResponse(
                 [
                     'error' => "Unable to get track $id",
                 ],
-                404,
+                Response::HTTP_NOT_FOUND,
             );
         }
     }
@@ -44,7 +44,7 @@ final class TrackController
             [
                 'items' => array_map(fn ($track) => $this->normalizeTrack($track), $tracks),
             ],
-            200,
+            Response::HTTP_OK,
         );
     }
 

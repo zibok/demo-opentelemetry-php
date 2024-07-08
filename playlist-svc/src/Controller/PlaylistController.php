@@ -28,7 +28,7 @@ final class PlaylistController
 
         return new JsonResponse(
             ['items' => $result],
-            200
+            Response::HTTP_OK,
         );
     }
 
@@ -39,7 +39,7 @@ final class PlaylistController
         $data = json_decode($payload);
         $this->playlistRepository->createNewPlaylist($data->ownerId, $data->name);
 
-        return new Response('', 204);
+        return new Response('', Response::HTTP_NO_CONTENT);
     }
 
     #[Route('/playlist/{playlistId}', name: 'app_playlist_get', methods: ['GET'])]
@@ -49,7 +49,7 @@ final class PlaylistController
 
         return new JsonResponse(
             $this->normalizePlaylist($playlist),
-            200,
+            Response::HTTP_OK,
         );
     }
 
@@ -78,7 +78,7 @@ final class PlaylistController
 
         $this->playlistRepository->save($playlist);
 
-        return new Response('', 204);
+        return new Response('', Response::HTTP_NO_CONTENT);
     }
 
     private function normalizePlaylist(Playlist $playlist): array

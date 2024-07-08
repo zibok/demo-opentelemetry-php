@@ -37,6 +37,6 @@ final readonly class UserController
     #[Route('/create', name: 'create', methods: ['POST'])]
     public function create(): Response
     {
-        throw HttpException::fromStatusCode(501, '/create is not implemented yet');
+        throw HttpException::fromStatusCode(Response::HTTP_NOT_IMPLEMENTED, '/create is not implemented yet');
     }
 }
