@@ -47,6 +47,31 @@ export default function AddTrackToPlaylistModal(props: AddTrackToPlaylistModalPr
         }
     };
 
+    const addSelectedTracksToCurrentPlaylist = async () => {
+        setLoading(true);
+        const trackIds = selectedTracks.map(track => track.trackId);
+
+        try {
+            const response = await fetch(`/playlists/${props.playlistId}/tracks`, {
+                method: "POST",
+                body: JSON.stringify({
+                    trackIds: trackIds,
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then(r => r.status);
+
+            if (response === 204) {
+                props.onClose({}, "Successfully created a playlist")
+            }
+
+            setLoading(false);
+        } catch (err) {
+            console.log(err)
+        }
+   };
+
     const getRowId = (row: Track): number => row.trackId;
 
     const loadingFormBody = (
@@ -101,7 +126,7 @@ export default function AddTrackToPlaylistModal(props: AddTrackToPlaylistModalPr
             <DialogTitle>Add track to playlist</DialogTitle>
             {loading ? loadingFormBody : regularFormBody}
             <DialogActions>
-                <Button>Add tracks</Button>
+                <Button onClick={() => addSelectedTracksToCurrentPlaylist()}>Add tracks</Button>
             </DialogActions>
         </Dialog>
     );

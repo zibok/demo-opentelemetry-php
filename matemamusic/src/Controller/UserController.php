@@ -23,18 +23,19 @@ class UserController
             'http://user-svc-nginx/list'
         );
 
-        if (200 != $response->getStatusCode()) {
+        if (Response::HTTP_OK != $response->getStatusCode()) {
             return new JsonResponse(
                 ['error' => 'Unable to fetch user list'],
-                500,
+                Response::HTTP_INTERNAL_SERVER_ERROR,
             );
         }
 
         $users = $response->toArray();
 
-        return new JsonResponse([
-            'users' => $users['items'],
-        ], 200);
+        return new JsonResponse(
+            [ 'users' => $users['items'] ],
+            Response::HTTP_OK
+        );
     }
 
     #[Route('/users/{userId}/playlists', name: 'app_user_playlists')]
@@ -44,10 +45,10 @@ class UserController
             'GET',
             "http://playlist-svc-nginx/user/$userId/playlists"
         );
-        if (200 != $response->getStatusCode()) {
+        if (Response::HTTP_OK != $response->getStatusCode()) {
             return new JsonResponse(
                 ['error' => 'Unable to fetch user playlists'],
-                500,
+                Response::HTTP_INTERNAL_SERVER_ERROR,
             );
         }
 
@@ -59,9 +60,10 @@ class UserController
             }
         }
 
-        return new JsonResponse([
-            'playlists' => $playlists['items'],
-        ], 200);
+        return new JsonResponse(
+            [ 'playlists' => $playlists['items'] ],
+            Response::HTTP_OK,
+        );
     }
 
     #[Route('/users/{userId}/createplaylist', name: 'app_user_playlist_create', methods: ['POST'])]
@@ -83,11 +85,11 @@ class UserController
         if (204 != $response->getStatusCode()) {
             return new JsonResponse(
                 ['error' => 'Unable to fetch user playlists'],
-                500,
+                Response::HTTP_INTERNAL_SERVER_ERROR,
             );
         }
 
-        return new Response('', 204);
+        return new Response('', Response::HTTP_NO_CONTENT);
     }
 
     private function hydrateTrack(array &$track): void
@@ -96,7 +98,7 @@ class UserController
             'GET',
             "http://catalog-svc-nginx/tracks/{$track['trackId']}"
         );
-        if (200 != $response->getStatusCode()) {
+        if (Response::HTTP_OK != $response->getStatusCode()) {
             throw new \Exception("Unable to retrieve track #{$track['trackId']}");
         }
 

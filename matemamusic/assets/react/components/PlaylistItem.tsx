@@ -28,9 +28,13 @@ export default function PlaylistItem(props: PlaylistItemProps): ReactNode {
     const handleClose = (event: Object, reason?: string) => {
         if (reason !== 'backdropClick') {
             setModalOpen(false);
-            //refresh();
+            refresh();
         }
     }
+
+    const refresh = () => {
+        // TODO: refresh content        
+    };
 
     const rows = props.playlist.trackList.map((track, index) => {
         return {

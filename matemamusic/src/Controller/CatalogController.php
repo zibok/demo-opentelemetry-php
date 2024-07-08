@@ -36,7 +36,7 @@ final class CatalogController
 
         return new JsonResponse(
             $response->toArray(),
-            200,
+            Response::HTTP_OK,
         );
     }
 }

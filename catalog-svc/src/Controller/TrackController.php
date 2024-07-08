@@ -51,7 +51,7 @@ final class TrackController
     private function normalizeTrack(Track $track): array
     {
         return [
-            'id' => $track->getId(),
+            'trackId' => $track->getId(),
             'title' => $track->getTitle(),
             'author' => $track->getAuthor(),
             'link' => $track->getLink(),
