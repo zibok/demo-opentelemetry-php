@@ -1,6 +1,6 @@
 volumes:
   catalog-svc-data:
-  playlist-svc-data:
+  favlist-svc-data:
   user-svc-data:
 
 services:
@@ -16,18 +16,20 @@ services:
       - .:/demo-opentelemetry-php
     user: $UID:$GID
     working_dir: /demo-opentelemetry-php
+    tmpfs:
+      - $HOME/.composer
 
-  matemamusic-fpm:
+  lesfilmsquejekiffe-fpm:
     build: ./docker/fpm
     volumes:
-      - ./matemamusic:/var/www
+      - ./lesfilmsquejekiffe:/var/www
   
-  matemamusic-nginx:
-    build: ./docker/matemamusic-nginx
+  lesfilmsquejekiffe-nginx:
+    build: ./docker/lesfilmsquejekiffe-nginx
     volumes:
-      - ./matemamusic:/var/www
+      - ./lesfilmsquejekiffe:/var/www
     depends_on:
-      - matemamusic-fpm
+      - lesfilmsquejekiffe-fpm
     ports:
       - 80:80
 
@@ -77,25 +79,25 @@ services:
     depends_on:
       - catalog-svc-fpm
 
-  playlist-svc-db:
+  favlist-svc-db:
     image: postgres:16
     shm_size: 128mb
     volumes:
-      - playlist-svc-data:/var/lib/postgresql/data
-      - ./playlist-svc/sql-init:/docker-entrypoint-initdb.d
+      - favlist-svc-data:/var/lib/postgresql/data
+      - ./favlist-svc/sql-init:/docker-entrypoint-initdb.d
     environment:
-      POSTGRES_PASSWORD: postgres-playlist
+      POSTGRES_PASSWORD: postgres-favlist
 
-  playlist-svc-fpm:
+  favlist-svc-fpm:
     build: ./docker/fpm
     volumes:
-      - ./playlist-svc:/var/www
+      - ./favlist-svc:/var/www
     depends_on:
-      - playlist-svc-db
+      - favlist-svc-db
   
-  playlist-svc-nginx:
-    build: ./docker/playlist-svc-nginx
+  favlist-svc-nginx:
+    build: ./docker/favlist-svc-nginx
     volumes:
-      - ./playlist-svc:/var/www
+      - ./favlist-svc:/var/www
     depends_on:
-      - playlist-svc-fpm
+      - favlist-svc-fpm

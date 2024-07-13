@@ -1,30 +1,35 @@
-# demo-opentelemetry-php
+# demo-opentelemetry-forumphp2024
 
-The main idea of this demo is to show how simple it is to setup distributed tracing in PHP with OpenTelemetry.
+L'idée maîtresse de cette démo est de démontrer à quel point il est simple de mettre en place des traces distribuéesen PHP avec OpenTelemetry.
 
 ## Architecture
 
-As an example of application, we will create a small service-oriented architecture with several PHP/Symfony 7 services.
+Comme exemple d'application, nous allons créer une petite architecture orientée service (SOA) avec plusieurs services en PHP/Symfony 7.
 
-![The architecture](doc/architecture.png)
+![L'architecture](doc/architecture.png)
 
-It is a small website allowing users to register and create some playlists from the available music catalog.
+Il s'agit d'un site web qui permet à des utilisateurs de créer des listes de leurs films préférés à partir d'un catalogue de films disponibles.
 
-## Start the environment
+## Pré-requis
 
-First build the images:
+* Docker + le plugin docker compose v2
+* Bash
+
+## Démarrer l'application
+
+Commencer par construire les images :
 
 ```sh
 bin/build.sh
 ```
 
-And start the application:
+et démarrer l'application:
 
 ```sh
 bin/up.sh
 ```
 
-If you want to clean things up, you can remove all the containers and volumes by running:
+Quand vous avez fini, pour éteindre les containers et supprimer les volumes :
 
 ```sh
 bin/down.sh
