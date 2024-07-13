@@ -7,6 +7,7 @@ import AddFilmsToFavlistModal from './AddFilmsToFavlistModal';
 
 type FavlistItemProps = {
     favlist: Favlist;
+    onClose: (event: Object, reason: string) => void;
 }
 
 const columns: GridColDef[] = [
@@ -18,17 +19,6 @@ const columns: GridColDef[] = [
   
 export default function FavlistItem(props: FavlistItemProps): ReactNode {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-
-    const handleClose = (event: Object, reason?: string) => {
-        if (reason !== 'backdropClick') {
-            setModalOpen(false);
-            refresh();
-        }
-    }
-
-    const refresh = () => {
-        // TODO: refresh content        
-    };
 
     const rows = props.favlist.filmList.map((film, index) => {
         return {
@@ -44,7 +34,7 @@ export default function FavlistItem(props: FavlistItemProps): ReactNode {
             <Button variant='text' onClick={() => {setModalOpen(true)}}>Ajouter des films</Button>
             <AddFilmsToFavlistModal
                 open={modalOpen}
-                onClose={handleClose}
+                onClose={props.onClose}
                 favlistId={props.favlist.id}
             />
             <DataGrid 

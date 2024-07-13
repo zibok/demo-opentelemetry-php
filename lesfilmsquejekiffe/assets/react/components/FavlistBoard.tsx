@@ -9,7 +9,7 @@ export type FavlistBoardProps = {
     currentUser: User;
 }
 
-function listOfFavlists(favlists: Favlist[]): ReactNode {
+function listOfFavlists(favlists: Favlist[], handleClose: (event: Object, reason: string) => void): ReactNode {
     if (favlists.length == 0) {
         return (
             <Paper elevation={3}>
@@ -20,7 +20,7 @@ function listOfFavlists(favlists: Favlist[]): ReactNode {
     
     return (
         <Grid container spacing={2}>
-        {favlists.map(item => <FavlistItem favlist={item} />)}
+        {favlists.map(item => <FavlistItem favlist={item} onClose={handleClose} />)}
         </Grid>
     );
 }
@@ -89,7 +89,7 @@ export default function FavlistBoard(props: FavlistBoardProps) {
             onClose={handleClose}
             favlistOwnerId={props.currentUser.id}
             />
-            {listOfFavlists(favlists)}
+            {listOfFavlists(favlists, handleClose)}
         </Box>
     );
 }
