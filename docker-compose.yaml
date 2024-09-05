@@ -28,8 +28,6 @@ services:
     #  OTEL_PHP_AUTOLOAD_ENABLED: "true"
     #  OTEL_SERVICE_NAME: "lesfilmsquejekiffe-svc"
     #  OTEL_TRACES_EXPORTER: "otlp"
-    #  OTEL_METRICS_EXPORTER: "otlp"
-    #  OTEL_LOGS_EXPORTER: "otlp"
     #  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
     #  OTEL_PROPAGATORS: "baggage,tracecontext"
 
@@ -62,8 +60,6 @@ services:
     #  OTEL_PHP_AUTOLOAD_ENABLED: "true"
     #  OTEL_SERVICE_NAME: "user-svc"
     #  OTEL_TRACES_EXPORTER: "otlp"
-    #  OTEL_METRICS_EXPORTER: "otlp"
-    #  OTEL_LOGS_EXPORTER: "otlp"
     #  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
     #  OTEL_PROPAGATORS: "baggage,tracecontext"
   
@@ -94,8 +90,6 @@ services:
     #  OTEL_PHP_AUTOLOAD_ENABLED: "true"
     #  OTEL_SERVICE_NAME: "catalog-svc"
     #  OTEL_TRACES_EXPORTER: "otlp"
-    #  OTEL_METRICS_EXPORTER: "otlp"
-    #  OTEL_LOGS_EXPORTER: "otlp"
     #  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
     #  OTEL_PROPAGATORS: "baggage,tracecontext"
   
@@ -126,8 +120,6 @@ services:
     #  OTEL_PHP_AUTOLOAD_ENABLED: "true"
     #  OTEL_SERVICE_NAME: "favlist-svc"
     #  OTEL_TRACES_EXPORTER: "otlp"
-    #  OTEL_METRICS_EXPORTER: "otlp"
-    #  OTEL_LOGS_EXPORTER: "otlp"
     #  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
     #  OTEL_PROPAGATORS: "baggage,tracecontext"
   
