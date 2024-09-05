@@ -7,3 +7,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists
 
 COPY fpm-www.conf /etc/php/8.3/fpm/pool.d/www.conf
+
+#RUN apt-get update \
+#    && apt-get install -qy libz-dev \
+#    && pecl install opentelemetry protobuf \
+#    && echo "extension=opentelemetry.so" > /usr/local/etc/php/conf.d/opentelemetry.ini \
+#    && echo "extension=protobuf.so" > /usr/local/etc/php/conf.d/protobuf.ini \
+#    && rm -rf /var/lib/apt/lists

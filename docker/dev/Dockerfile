@@ -25,4 +25,11 @@ ENV NODE_VERSION=22
 ENV npm_config_cache=/tmp
 RUN (curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - ) && apt-get install -y nodejs
 
+#RUN apt-get update \
+#    && apt-get install -qy libz-dev \
+#    && pecl install opentelemetry protobuf \
+#    && echo "extension=opentelemetry.so" > /usr/local/etc/php/conf.d/opentelemetry.ini \
+#    && echo "extension=protobuf.so" > /usr/local/etc/php/conf.d/protobuf.ini \
+#    && rm -rf /var/lib/apt/lists
+
 USER dev
