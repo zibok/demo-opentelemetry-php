@@ -24,4 +24,5 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "catalogdb" <<-EOSQ
 	INSERT INTO "film" (title, author, genre) VALUES ('Les tontons flingueurs', 'Georges Lautner', 'Comédie');
 	INSERT INTO "film" (title, author, genre) VALUES ('Métropolis', 'Fritz Lang', 'Classique');
 	INSERT INTO "film" (title, author, genre) VALUES ('Les ailes du désir', 'Wim Wenders', 'Classique');
+	INSERT INTO "film" (title, author, genre) VALUES ('Camping', 'Fabien Onteniente', 'Comédie');
 EOSQL

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +15,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 final class FavlistController {
     public function __construct(
         private HttpClientInterface $client,
+        private LoggerInterface $logger,
     ) {
     }
 
@@ -30,8 +33,9 @@ final class FavlistController {
         );
 
         if (Response::HTTP_NO_CONTENT != $response->getStatusCode()) {
+            $responseObj = $response->toArray(false);
             return new JsonResponse(
-                [ 'error' => "Unable to add films to favlist {$favlistId}" ],
+                [ 'error' => "Unable to add films to favlist {$favlistId}", 'details' => $responseObj["error"] ],
                 Response::HTTP_INTERNAL_SERVER_ERROR,
             );
         }

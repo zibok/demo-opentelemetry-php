@@ -8,6 +8,7 @@ use App\Repository\FavlistRepositoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class FavlistController
@@ -56,8 +57,13 @@ final class FavlistController
     #[Route('/favlist/{favlistId}/films', name: 'app_favlist_addfilms', methods: ['POST'])]
     public function addFilms(int $favlistId, Request $request): Response
     {
-        $payload = json_decode($request->getContent());
+        $payload = json_decode($request->getContent(), false);
         $filmIdsToAdd = $payload->filmIds;
+
+        // Camping ? Non !
+        if (array_search(7, $filmIdsToAdd, true) !== false) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, "Naaaan !! Je veux pô");
+        }
 
         $filmsToAdd = array_map(
             fn ($filmId) => new FilmId($filmId),

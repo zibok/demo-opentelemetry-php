@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, Link, TextField } from "@mui/material";
+import { Alert, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, Link, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Film } from "../types/Film";
 import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
@@ -22,6 +22,7 @@ export default function AddFilmsToFavlistModal(props: AddFilmsToFavlistModalProp
     const [searchString, setSearchString] = useState<string>('');
     const [films, setFilms] = useState<Film[]>([]);
     const [selectedFilms, setSelectedFilms] = useState<Film[]>([]);
+    const [errors, setErrors] = useState<string[]>([])
 
 
     useEffect(() => {searchTracks(searchString);}, [searchString]);
@@ -52,14 +53,25 @@ export default function AddFilmsToFavlistModal(props: AddFilmsToFavlistModalProp
                     filmIds: filmIds,
                 }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
                 }
-            }).then(r => r.status);
+            }).then(async r => {
+                return {
+                    status: r.status,
+                    body: r.status == 204 ? '' : await r.json(), 
+                };
+            });
 
-            if (response === 204) {
-                props.onClose({}, "Creation successful")
+            if (response.status === 204) {
+                setErrors([]);
+                props.onClose({}, "Creation successful");
+            } else {
+                let responseErrors: string[] = [];
+                if (response.body.error) responseErrors.push(response.body.error);
+                if (response.body.details) responseErrors.push(response.body.details);
+                setErrors(responseErrors);
             }
-
+            
             setLoading(false);
         } catch (err) {
             console.log(err)
@@ -106,6 +118,7 @@ export default function AddFilmsToFavlistModal(props: AddFilmsToFavlistModalProp
                         setSelectedFilms(selectedRows);
                       }}
                 />
+                {errors.length > 0 ? <Alert severity="error">{errors.join(" - ")}</Alert> : ""}
             </FormControl>
         </DialogContent>
     )
