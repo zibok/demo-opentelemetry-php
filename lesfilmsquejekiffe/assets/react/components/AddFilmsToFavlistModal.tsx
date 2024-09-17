@@ -129,6 +129,7 @@ export default function AddFilmsToFavlistModal(props: AddFilmsToFavlistModalProp
             onClose={props.onClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
+            maxWidth="lg"
         >
             <DialogTitle>Ajouter des films à une liste de favoris</DialogTitle>
             {loading ? loadingFormBody : regularFormBody}
