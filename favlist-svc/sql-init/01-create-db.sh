@@ -22,4 +22,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "favlistdb" <<-EOSQ
 	GRANT ALL ON "favlist_id_seq" TO favlist_rw;
 
 	INSERT INTO "favlist" (name, owner, film_list) VALUES ('Mes films d''actions préférés', 1, '{1, 2, 3}');
+
+	INSERT INTO "favlist" (name, owner, film_list) VALUES ('Mes films classiques préférés', 2, '{10, 11}');
+	INSERT INTO "favlist" (name, owner, film_list) VALUES ('Mes films d''animation préférés', 2, '{12, 13}');
 EOSQL

@@ -13,7 +13,7 @@ function listOfFavlists(favlists: Favlist[], handleClose: (event: Object, reason
     if (favlists.length == 0) {
         return (
             <Paper elevation={3}>
-            Cette utilisateur n'a pas de liste de favoris pour le moment.
+            <center>Cette utilisateur n'a pas de liste de favoris pour le moment.</center>
             </Paper>
         );
     }
@@ -65,7 +65,10 @@ export default function FavlistBoard(props: FavlistBoardProps) {
     
     if (props.currentUser.id === 0) {
         return (
-            <Typography component="h1" variant="h4">Commencez par sélectionner un utilisateur dans la barre au-dessus</Typography>
+            <Typography component="h1" variant="h4" paddingTop={"50px"}>
+                <center>Bienvenue dans les Films que Je Kiffe !</center>
+                <center>Commencez par sélectionner un utilisateur dans la barre au-dessus</center>
+            </Typography>
         )
     }
     
