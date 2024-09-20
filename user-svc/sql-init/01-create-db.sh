@@ -16,5 +16,5 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "userdb" <<-EOSQL
 
   GRANT ALL ON "mmm_user" TO user_rw;
 
-	INSERT INTO "mmm_user" (name) VALUES ('Vince'), ('Marie'), ('Raphaël'), ('Swan');
+	INSERT INTO "mmm_user" (name) VALUES ('Vince'), ('Marie'), ('Loïc'), ('Benoît'), ('Martial'), ('Yassine'), ('Margot'), ('Pierre');
 EOSQL
