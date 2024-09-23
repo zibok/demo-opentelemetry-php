@@ -27,10 +27,14 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "catalogdb" <<-EOSQ
 	INSERT INTO "film" (title, author, genre) VALUES ('Camping', 'Fabien Onteniente', 'Comédie');
 	INSERT INTO "film" (title, author, genre) VALUES ('Spider-Man: New Generation (Spider-Man: Into the Spider-Verse)', 'Peter Ramsey, Bob Persichetti, Rodney Rothman', 'Action, Animation');
 	INSERT INTO "film" (title, author, genre) VALUES ('Bienvenue chez les ch''tis', 'Danny Boon', 'Comédie');
-
 	INSERT INTO "film" (title, author, genre) VALUES ('Les ailes du désir', 'Wim Wenders', 'Classique');
 	INSERT INTO "film" (title, author, genre) VALUES ('Autant en emporte le vent (Gone with the wind)', 'Victor Fleming', 'Classique');
 	INSERT INTO "film" (title, author, genre) VALUES ('La Traversée', 'Florence Mirailhe', 'Animation');
 	INSERT INTO "film" (title, author, genre) VALUES ('La bergère et le ramoneur', 'Paul Grimault, Jacques Prévert', 'Animation, Conte');
 	INSERT INTO "film" (title, author, genre) VALUES ('Le roi et l''oiseau', 'Paul Grimault, Jacques Prévert', 'Animation, Conte');
+	INSERT INTO "film" (title, author, genre) VALUES ('Le tigre de Tasmanie', 'Vergine Keaton', 'Animation, Court-métrage');
+	INSERT INTO "film" (title, author, genre) VALUES ('La Chute', 'Boris Labbé', 'Animation, Court-métrage');
+	INSERT INTO "film" (title, author, genre) VALUES ('L''heure de l''ours', 'Agnès Patron', 'Animation, Court-métrage');
+	INSERT INTO "film" (title, author, genre) VALUES ('In the Mood for Love', 'Wong Kar Wai', 'Romantique');
+	INSERT INTO "film" (title, author, genre) VALUES ('Tesla : lumière mondiale', 'Matthew Rankin', 'Biopic, Court-métrage');
 EOSQL
