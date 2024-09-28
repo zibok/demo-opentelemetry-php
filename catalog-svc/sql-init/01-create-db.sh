@@ -37,4 +37,10 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "catalogdb" <<-EOSQ
 	INSERT INTO "film" (title, author, genre) VALUES ('L''heure de l''ours', 'Agnès Patron', 'Animation, Court-métrage');
 	INSERT INTO "film" (title, author, genre) VALUES ('In the Mood for Love', 'Wong Kar Wai', 'Romantique');
 	INSERT INTO "film" (title, author, genre) VALUES ('Tesla : lumière mondiale', 'Matthew Rankin', 'Biopic, Court-métrage');
+	INSERT INTO "film" (title, author, genre) VALUES ('Flow', 'Gints Zilbalodis', 'Animation, Aventure');
+	INSERT INTO "film" (title, author, genre) VALUES ('J''ai perdu mon corps', 'Jérémy Clapin', 'Animation, Fantastique');
+	INSERT INTO "film" (title, author, genre) VALUES ('Mars Express', 'Jérémie Périn', 'Animation, Science-Fiction');
+	INSERT INTO "film" (title, author, genre) VALUES ('Ghost in the shell', 'Oshii Mamoru', 'Animation, Science-Fiction');
+	INSERT INTO "film" (title, author, genre) VALUES ('Ghost in the Shell 2: Innocence', 'Oshii Mamoru', 'Animation, Science-Fiction');
+	
 EOSQL

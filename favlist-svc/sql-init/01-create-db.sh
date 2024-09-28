@@ -24,6 +24,6 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "favlistdb" <<-EOSQ
 	INSERT INTO "favlist" (name, owner, film_list) VALUES ('Mes films d''actions préférés', 1, '{1, 2, 3}');
 
 	INSERT INTO "favlist" (name, owner, film_list) VALUES ('Mes films classiques préférés', 2, '{10, 11, 18}');
-	INSERT INTO "favlist" (name, owner, film_list) VALUES ('Mes films d''animation préférés', 2, '{12, 13}');
+	INSERT INTO "favlist" (name, owner, film_list) VALUES ('Mes films d''animation préférés', 2, '{20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24, 20, 21, 12, 13, 22, 23, 24}');
 	INSERT INTO "favlist" (name, owner, film_list) VALUES ('Mes courts-métrages préférés', 2, '{14, 15, 16, 19}');
 EOSQL
