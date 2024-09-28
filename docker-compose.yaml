@@ -23,13 +23,13 @@ services:
     build: ./docker/fpm
     volumes:
       - ./lesfilmsquejekiffe:/var/www
-    #environment:
-    #  OTEL_SERVICE_NAME: "lesfilmsquejekiffe-svc"
-    #  OTEL_PHP_AUTOLOAD_ENABLED: "true"
-    #  OTEL_TRACES_EXPORTER: "otlp"
-    #  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
-    #  OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
-    #  OTEL_PROPAGATORS: "baggage,tracecontext"
+    environment:
+      OTEL_SERVICE_NAME: "lesfilmsquejekiffe-svc"
+      OTEL_PHP_AUTOLOAD_ENABLED: "true"
+      OTEL_TRACES_EXPORTER: "otlp"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
+      OTEL_PROPAGATORS: "baggage,tracecontext"
 
   lesfilmsquejekiffe-nginx:
     build: ./docker/lesfilmsquejekiffe-nginx
@@ -55,13 +55,13 @@ services:
       - ./user-svc:/var/www
     depends_on:
       - user-svc-db
-    #environment:
-    #  OTEL_SERVICE_NAME: "user-svc"
-    #  OTEL_PHP_AUTOLOAD_ENABLED: "true"
-    #  OTEL_TRACES_EXPORTER: "otlp"
-    #  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
-    #  OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
-    #  OTEL_PROPAGATORS: "baggage,tracecontext"
+    environment:
+      OTEL_SERVICE_NAME: "user-svc"
+      OTEL_PHP_AUTOLOAD_ENABLED: "true"
+      OTEL_TRACES_EXPORTER: "otlp"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
+      OTEL_PROPAGATORS: "baggage,tracecontext"
   
   user-svc-nginx:
     build: ./docker/user-svc-nginx
@@ -85,13 +85,13 @@ services:
       - ./catalog-svc:/var/www
     depends_on:
       - catalog-svc-db
-    #environment:
-    #  OTEL_SERVICE_NAME: "catalog-svc"
-    #  OTEL_PHP_AUTOLOAD_ENABLED: "true"
-    #  OTEL_TRACES_EXPORTER: "otlp"
-    #  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
-    #  OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
-    #  OTEL_PROPAGATORS: "baggage,tracecontext"
+    environment:
+      OTEL_SERVICE_NAME: "catalog-svc"
+      OTEL_PHP_AUTOLOAD_ENABLED: "true"
+      OTEL_TRACES_EXPORTER: "otlp"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
+      OTEL_PROPAGATORS: "baggage,tracecontext"
   
   catalog-svc-nginx:
     build: ./docker/catalog-svc-nginx
@@ -115,13 +115,13 @@ services:
       - ./favlist-svc:/var/www
     depends_on:
       - favlist-svc-db
-    #environment:
-    #  OTEL_SERVICE_NAME: "favlist-svc"
-    #  OTEL_PHP_AUTOLOAD_ENABLED: "true"
-    #  OTEL_TRACES_EXPORTER: "otlp"
-    #  OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
-    #  OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
-    #  OTEL_PROPAGATORS: "baggage,tracecontext"
+    environment:
+      OTEL_SERVICE_NAME: "favlist-svc"
+      OTEL_PHP_AUTOLOAD_ENABLED: "true"
+      OTEL_TRACES_EXPORTER: "otlp"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
+      OTEL_PROPAGATORS: "baggage,tracecontext"
   
   favlist-svc-nginx:
     build: ./docker/favlist-svc-nginx
@@ -130,6 +130,6 @@ services:
     depends_on:
       - favlist-svc-fpm
 
-#  lgtm:
-#    image: grafana/otel-lgtm
-#    ports: ["3000:3000"]
+  lgtm:
+    image: grafana/otel-lgtm
+    ports: ["3000:3000"]
