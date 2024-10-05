@@ -27,8 +27,8 @@ services:
       OTEL_SERVICE_NAME: "lesfilmsquejekiffe-svc"
       OTEL_PHP_AUTOLOAD_ENABLED: "true"
       OTEL_TRACES_EXPORTER: "otlp"
-      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4317"
       OTEL_PROPAGATORS: "baggage,tracecontext"
 
   lesfilmsquejekiffe-nginx:
@@ -59,8 +59,8 @@ services:
       OTEL_SERVICE_NAME: "user-svc"
       OTEL_PHP_AUTOLOAD_ENABLED: "true"
       OTEL_TRACES_EXPORTER: "otlp"
-      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4317"
       OTEL_PROPAGATORS: "baggage,tracecontext"
   
   user-svc-nginx:
@@ -89,8 +89,8 @@ services:
       OTEL_SERVICE_NAME: "catalog-svc"
       OTEL_PHP_AUTOLOAD_ENABLED: "true"
       OTEL_TRACES_EXPORTER: "otlp"
-      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4317"
       OTEL_PROPAGATORS: "baggage,tracecontext"
   
   catalog-svc-nginx:
@@ -119,8 +119,8 @@ services:
       OTEL_SERVICE_NAME: "favlist-svc"
       OTEL_PHP_AUTOLOAD_ENABLED: "true"
       OTEL_TRACES_EXPORTER: "otlp"
-      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4318"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "grpc"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://lgtm:4317"
       OTEL_PROPAGATORS: "baggage,tracecontext"
   
   favlist-svc-nginx:

@@ -8,10 +8,12 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "nyholm/psr7": "^1.8",
-        "open-telemetry/exporter-otlp": "^1.0",
+        "open-telemetry/api": "^1.1",
+        "open-telemetry/exporter-otlp": "^1.1",
         "open-telemetry/opentelemetry-auto-pdo": "^0.0.15",
         "open-telemetry/opentelemetry-auto-symfony": "^1.0@beta",
-        "open-telemetry/sdk": "^1.0",
+        "open-telemetry/sdk": "^1.1",
+        "open-telemetry/transport-grpc": "^1.1",
         "phpdocumentor/reflection-docblock": "^5.4",
         "phpstan/phpdoc-parser": "^1.29",
         "symfony/asset": "7.1.*",
@@ -51,7 +53,8 @@
         "allow-plugins": {
             "php-http/discovery": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "tbachert/spi": true
         },
         "sort-packages": true
     },

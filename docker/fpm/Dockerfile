@@ -10,7 +10,7 @@ COPY fpm-www.conf /etc/php/8.3/fpm/pool.d/www.conf
 
 RUN apt-get update \
     && apt-get install -qy libz-dev \
-    && pecl install opentelemetry protobuf \
+    && MAKEFLAGS="-j $(nproc)" pecl install opentelemetry grpc \
     && echo "extension=opentelemetry.so" > /usr/local/etc/php/conf.d/opentelemetry.ini \
-    && echo "extension=protobuf.so" > /usr/local/etc/php/conf.d/protobuf.ini \
+    && echo "extension=grpc.so" > /usr/local/etc/php/conf.d/grpc.ini \
     && rm -rf /var/lib/apt/lists

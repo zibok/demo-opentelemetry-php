@@ -12,10 +12,12 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.2",
         "nyholm/psr7": "^1.8",
-        "open-telemetry/exporter-otlp": "^1.0",
+        "open-telemetry/api": "^1.1",
+        "open-telemetry/exporter-otlp": "^1.1",
         "open-telemetry/opentelemetry-auto-pdo": "^0.0.15",
         "open-telemetry/opentelemetry-auto-symfony": "^1.0@beta",
-        "open-telemetry/sdk": "^1.0",
+        "open-telemetry/sdk": "^1.1",
+        "open-telemetry/transport-grpc": "^1.1",
         "symfony/console": "7.1.*",
         "symfony/dotenv": "7.1.*",
         "symfony/flex": "^2",
@@ -28,7 +30,8 @@
         "allow-plugins": {
             "php-http/discovery": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "tbachert/spi": true
         },
         "sort-packages": true
     },

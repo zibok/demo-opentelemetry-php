@@ -7,6 +7,8 @@ for dir in lesfilmsquejekiffe favlist-svc catalog-svc user-svc ; do
             "open-telemetry/opentelemetry-auto-symfony ^1.0@beta" \
             open-telemetry/opentelemetry-auto-pdo \
             open-telemetry/sdk \
-            open-telemetry/exporter-otlp 
+            open-telemetry/exporter-otlp \
+            open-telemetry/transport-grpc \
+            open-telemetry/api
     )
 done
