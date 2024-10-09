@@ -26,8 +26,10 @@ bin/build.sh
 et démarrer l'application:
 
 ```sh
-bin/up.sh
+bin/up.sh [--rebuild-apps]
 ```
+
+`--rebuild-apps` is forcing a rebuild of the applications (composer install and npm run build) after docker compose up (to ensure we are up-to-date with composer.lock and packages.lock)
 
 Quand vous avez fini, pour éteindre les containers et supprimer les volumes :
 
