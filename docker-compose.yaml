@@ -17,7 +17,7 @@ services:
     user: $UID:$GID
     working_dir: /demo-opentelemetry-php
     tmpfs:
-      - $HOME/.composer
+      - $HOME/.composer:uid=$UID,gid=$GID
 
   lesfilmsquejekiffe-fpm:
     build: ./docker/fpm
